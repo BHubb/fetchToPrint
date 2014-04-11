@@ -20,17 +20,17 @@ CUPS_HOSTNAME=
 
 
 # Checking enviroment
-if [ -f !"$(pwd)/logs" ]
+if [ ! -d "$(pwd)/logs" ]
 then
 	mkdir $(pwd)/logs
 fi
 
-if [ -f !"$(pwd)/mail" ]
+if [ ! -d "$(pwd)/mail" ]
 then
 	mkdir $(pwd)/mail
 fi
 
-if [ -f !"$(pwd)/pdf-in" ]
+if [ ! -d "$(pwd)/pdf-in" ]
 then
 	mkdir $(pwd)/pdf-in
 fi
