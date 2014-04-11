@@ -6,27 +6,37 @@ export DISPLAY=:0.0
 # Importing fetchToPrint Configs
 source fetchToPrint.conf
 
-# Creating fetchmail and procmail confs
-
 # Checking enviroment
-if [ ! -d "$(pwd)/logs" ]
+if [ ! -d "$FETCHTOPRINT/logs" ]
 then
-	mkdir $(pwd)/logs
+	mkdir $FETCHTOPRINT/logs
 fi
 
-if [ ! -d "$(pwd)/mail" ]
+if [ ! -d "$FETCHTOPRINT/mail" ]
 then
-	mkdir $(pwd)/mail
+	mkdir $FETCHTOPRINT/mail
 fi
 
-if [ ! -d "$(pwd)/pdf-in" ]
+if [ ! -d "$FETCHTOPRINT/pdf-in" ]
 then
-	mkdir $(pwd)/pdf-in
+	mkdir $FETCHTOPRINT/pdf-in
 fi
+
+# Creating fetchmail and procmail confs
+sed -e "s/:MAIL_SERVER:/$MAIL_SERVER/g" \
+    -e "s/:MAIL_PROTO:/$MAIL_PROTO/g" \
+    -e "s/:MAIL_USER:/$MAIL_USER/g" \
+    -e "s/:MAIL_PASSWORD:/$MAIL_PASSWORD/g" \
+    -e "s/:PROCMAIL_CONFIG:/$PROCMAIL_CONFIG/g" \
+    $FETCHTOPRINT/configs/fetchmail.template > $FETCHTOPRINT/configs/fetchmail
+
+sed -e "s/:FETCHTOPRINT_DIR:/$FETCHTOPRINT_DIR/g" \
+    -e "s/:PROCMAIL_LOG:/$PROCMAIL_LOG/g" \
+    $FETCHTOPRINT/configs/procmail.template > $FETCHTOPRINT/configs/procmail
 
 # Operations
 fetchmail -K -s -f $FETCHMAIL_CONFIG 2>> $FETCHMAIL_LOG 1>> $FETCHMAIL_LOG # Grabs mail via IMAP
-munpack $MAIL_DIR -f -q -C $ATTACHMENT_DIR 2>> $MUNPACK_LOG 1>> $MUNPACK_LOG # Unpacks mail in MAIL_DIR to ATTACHEMNT_DIR
+munpack $MAIL_NEWDIR -f -q -C $ATTACHMENT_DIR 2>> $MUNPACK_LOG 1>> $MUNPACK_LOG # Unpacks mail in MAIL_DIR to ATTACHEMNT_DIR
 
 files=$(ls $ATTACHMENT_DIR/*.$ATTACHMENT_TYPE 2> /dev/null | wc -l)	# counts number of pdfs in ATTACHMENT_DIR
 if [ "$files" != "0" ]; then # If the number of pdf's is greater then 0 then;

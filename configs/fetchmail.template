@@ -1,5 +1,5 @@
 
 set postmaster "fetchToPrint"
 
-poll $MAIL_SERVER with proto $MAIL_PROTO
-   	user '$MAIL_USER' there with password '$MAIL_PASSWORD' is fetchToPrint here options mda "/usr/bin/procmail -m $PROCMAIL_CONF"
+poll :MAIL_SERVER: with proto :MAIL_PROTO:
+   	user ':MAIL_USER:' there with password ':MAIL_PASSWORD:' is fetchToPrint here options mda "/usr/bin/procmail -m :PROCMAIL_CONFIG:"
