@@ -3,21 +3,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 export DISPLAY=:0.0
 # Above is to make the script silent for cron
 
+# Importing fetchToPrint Configs
+source fetchToPrint.conf
 
-# Logs
-PDF_PRINT_LOG=$(pwd)/logs/pdf_print			# Logs all the pdfs that have been printed
-FETCHMAIL_LOG=$(pwd)/logs/fetchmail			# Logs fetchmail errors
-MUNPACK_LOG=$(pwd)/logs/munpack				# Logs Munpack Errors
-CUPS_LOG=$(pwd)/logs/cups				# Logs for CUPS
-
-# Variables
-FETCHMAIL_CONFIG=$(pwd)/configs/fetchmail		# Configuration file for OfflineIMAP
-MAIL_DIR=$(pwd)/mail/new/*				# Folder that munpack will be pulling attachments from
-ATTACHMENT_DIR=$(pwd)/pdf-in				# Folder that munpack will be sending attachments too
-ATTACHMENT_TYPE=
-CUPS_PRINTER=
-CUPS_HOSTNAME=
-
+# Creating fetchmail and procmail confs
 
 # Checking enviroment
 if [ ! -d "$(pwd)/logs" ]
