@@ -1,7 +1,1 @@
-CORRECTHOME=/media/sd/gits/fetchToPrint/
-MAILDIR=$CORRECTHOME/
-PMDIR=/media/sd/gits/fetchToPrint/logs
-LOGFILE=$PMDIR/procmail
-VERBOSE=on
-:0
-mail/
+

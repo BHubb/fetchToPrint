@@ -1,5 +1,1 @@
 
-set postmaster "fetchToPrint"
-
-poll 192.168.0.16 with proto imap
-   	user 'Print-Orders' there with password 'Qwerty123!' is fetchToPrint here options mda "/usr/bin/procmail -m /media/sd/gits/fetchToPrint/configs/procmail"
