@@ -1,5 +1,7 @@
 fetchToPrint, A simple imap/pop attachment printer
 
+fetchToPrint works by grabing mail via fetchmail/procmail, it is then unpacked with munpack (mpack) and then sent to the printer of choice.
+
 # Dependencies
 fetchmail
 procmail
@@ -9,3 +11,11 @@ mpack
 # Configure
 All configurations should be made in the fetchToPrint.conf file that resides in the same dir as fetchToPrint.sh
 
+$FETCHTOPRINT_DIR is used to set the scripts root dir and needs to be set
+
+Logs can be sent anywhere however fetchToPrint will still make a log folder in $FETCHTOPRINT_DIR 
+Note for $PROCMAIL_LOG it is a DIR not a file as the procmail config takes both
+
+$ATTACHMENT_TYPE excludes '.' if you include it you will get *..txt
+
+$MAIL_NEWDIR should include a '*' for the directory where new mail is placed
