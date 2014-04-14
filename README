@@ -4,7 +4,8 @@ fetchToPrint, A simple imap/pop attachment printer
 fetchmail
 procmail
 cups
-munpack
+mpack
 
 # Configure
+All configurations should be made in the fetchToPrint.conf file that resides in the same dir as fetchToPrint.sh
 
